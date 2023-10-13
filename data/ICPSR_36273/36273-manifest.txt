@@ -1,0 +1,57 @@
+File Manifest for ICPSR 36273
+
+Tessler, Mark, Amaney Jamal, Musa Shteiwi, Khalil Shikaki, Michael Robbins,
+Rabih Hamami, Hesham Gaafar, Munqith Dagher, Ehab Sami, Rabih Haber, Fathi
+Ali, Mhammed Abderebbi, El-Mogiera Al-Sayed, Imen Mizlini, and Tareq
+Salaam. Arab Barometer: Public Opinion Survey Conducted in Algeria, Egypt,
+Iraq, Jordan, Kuwait, Lebanon, Libya, Morocco, Palestine, Sudan, Tunisia,
+and Yemen, 2012-2014. ICPSR36273-v1. Ann Arbor, MI: Inter-university
+Consortium for Political and Social Research [distributor], 2015-11-13.
+http://doi.org/10.3886/ICPSR36273.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    36273-descriptioncitation.pdf       -       -         -       2015-11-17  -
+
+    36273-related_literature.txt        -       -         -       daily       -
+
+    36273-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Arab Barometer: Public Opinion Survey Conducted in Algeria, Egypt,
+Iraq, Jordan, Kuwait, Lebanon, Libya, Morocco, Palestine, Sudan, Tunisia,
+and Yemen, 2012-2014
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    36273-0001-Codebook.pdf             -       -         -       2015-11-13  265f01a31a6e63e87ef5e3a6436ab7d4
+
+    36273-0001-Data.dta                 -       14,809    297     2015-11-13  80b9c9aab54b722a8f2c14f8a0cc75ff
+
+    36273-0001-Data.rda                 -       14,809    297     2015-11-13  2a1b883863280c5c7b40c86ed8e3c28a
+
+    36273-0001-Data.sav                 -       14,809    297     2015-11-13  5b7d2baf8164f88959e7571f9e04f2ed
+
+    36273-0001-Data.stc                 -       14,809    297     2015-11-13  497251d27f18a15c6f63009d1fe8bec1
+
+    36273-0001-Data.tsv                 -       14,809    297     2015-11-13  5fcd2a3e0d4d4a5f5c90f9689450d4cb
+
+    36273-0001-Data.txt                 446     14,809    297     2015-11-13  6fd390b0c4ded2ce0d540f5e7d6b95f3
+
+    36273-0001-Setup.dct                -       -         -       2015-11-13  8dd0d9d009f8b56ac71f7f80b9aaf328
+
+    36273-0001-Setup.do                 -       -         -       2015-11-13  eea5d912ac039e6863e3bb2267ccacb1
+
+    36273-0001-Setup.sas                -       -         -       2015-11-13  7440467e5807cf26c539868ed7c55cc6
+
+    36273-0001-Setup.sps                -       -         -       2015-11-13  48c0fbb6bfc5ff7339fb1ba648371d88
+
+    36273-0001-Supplemental_syntax.do   -       -         -       2015-11-13  7eda7ffa930485f673bc955c692db6a9
+
+    36273-0001-Supplemental_syntax.sas  -       -         -       2015-11-13  c3c81748f19fe5fa650ca1fe725c3c67
+

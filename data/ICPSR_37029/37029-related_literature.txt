@@ -1,0 +1,28 @@
+Bibliography
+Arab Barometer: Public Opinion Survey Conducted in Algeria, Egypt,  Jordan,
+Lebanon, Morocco, Palestine, and Tunisia, 2016
+
+This bibliography includes published and unpublished works that are related 
+to ICPSR study 37029. It includes works that are based on primary
+or secondary analysis of the data, or which describe or critique those
+data or the collection methodology. 
+
+If you publish a work or know of other works that are based on these data,
+please send the complete citation and name of the ICPSR study used to:
+icpsr-biblio-notify@umich.edu 
+
+
+1. Abdul Reda, Amir, "Structures Strike Back: Their Significance for Our
+Models of Opinion Formation." Dissertation, University of Toronto, 2021.
+Abstract: https://tspace.library.utoronto.ca/handle/1807/106455
+
+2. Diwan, Ishac, "Algeria’s second Arab Spring?." New Europe. Mar 30,
+2019,.
+Full text: https://www.neweurope.eu/article/algerias-second-arab-spring/
+
+3. Scott, Matthew J.; Johnson, Kathryn A.; Okun, Morris A.; Cohen, Adam B.,
+"The road not taken: Fostering research on the psychology of religiosity
+and spirituality via underused Representative, Open-Access Datasets
+(ROADs)." International Journal for the Psychology of Religion. 2019, 29,
+(3), 204 - 221. DOI: 10.1080/10508619.2019.1596000
+Full text: https://www.neweurope.eu/article/algerias-second-arab-spring/

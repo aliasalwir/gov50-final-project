@@ -1,0 +1,71 @@
+File Manifest for ICPSR 26581
+
+Tessler, Mark, Amaney Jamal, Abdallah Bedaida, Mhammed Abderebbi, Khalil
+Shikaki, Fares Braizat, Justin Gengler, and Michael Robbins. Arab
+Barometer: Public Opinion Survey Conducted in Algeria, Morocco, Jordan,
+Lebanon, Palestine, Yemen, and Bahrain 2006-2009. ICPSR26581-v4. Ann Arbor,
+MI: Inter-university Consortium for Political and Social Research
+[distributor], 2016-02-26. http://doi.org/10.3886/ICPSR26581.v4
+
+Details on the version history can be found below the file listings.
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    26581-descriptioncitation.pdf       -       -         -       2016-02-26  -
+
+    26581-related_literature.txt        -       -         -       daily       -
+
+    26581-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Arab Barometer: Public Opinion Survey Conducted in Algeria, Morocco,
+Jordan, Lebanon, Palestine, Yemen, and Bahrain 2006-2009
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    26581-0001-Codebook.pdf             -       -         -       2016-02-26  98e49a6e3229df35d9834ecc2c7ea0f8
+
+    26581-0001-Data.dta                 -       7,337     181     2016-02-26  15b17c78010c7e1c5315dfd74a1e984b
+
+    26581-0001-Data.rda                 -       7,337     181     2016-02-26  e298573a0eec7e332126fa0eba83a4a5
+
+    26581-0001-Data.sav                 -       7,337     181     2016-02-26  7257e86307b03199f0d6fab28afcb905
+
+    26581-0001-Data.stc                 -       7,337     181     2016-02-26  d549df0df21b45e33de0bba05264e4a7
+
+    26581-0001-Data.tsv                 -       7,337     181     2016-02-26  fd1511c6b923a50e2c17f7820dcbe4c8
+
+    26581-0001-Data.txt                 413     7,337     181     2016-02-26  d1ce0d04ed193c16393b2e35c8671316
+
+    26581-0001-Questionnaire.pdf        -       -         -       2016-02-26  b1b40332208b8c542acc6903a46b2c38
+
+    26581-0001-Setup.dct                -       -         -       2016-02-26  3bb29f15688d307cb2f326694f2aaeff
+
+    26581-0001-Setup.do                 -       -         -       2016-02-26  9b9c98f21b3a66b8054a2135bced890c
+
+    26581-0001-Setup.sas                -       -         -       2016-02-26  a1f04538b0eea5c6c6bbd1dffee47539
+
+    26581-0001-Setup.sps                -       -         -       2016-02-26  5c54576cbfdd20891410003466010119
+
+    26581-0001-Supplemental_syntax.do   -       -         -       2016-02-26  d66ac5e531fcc3c194eb4e9810069d66
+
+    26581-0001-Supplemental_syntax.sas  -       -         -       2016-02-26  1e46544a33dd818df067ebdd5d571d67
+
+
+Version History
+
+2016-02-26 The Bahrain data collection instrument and data have been added
+to the collection.  2013-07-01 Cases for the country Morocco have been set
+to missing for the variable Q701EXACTAGEWITHOUTMOROCCO.  2012-10-25
+Problems with a significant number of interviews in the 2006 Arab Barometer
+survey in Kuwait were discovered subsequent to the posting of these data on
+the Barometer's website and to depositing them with the Inter-University
+Consortium for Political and Social Research. Accordingly, the 2006 Kuwait
+survey has been removed from the first wave of the Arab Barometer.
+Additional queries about the Kuwait 2006 data should be made to Amaney
+Jamal: ajamal@princeton.edu.

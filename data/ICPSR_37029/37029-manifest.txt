@@ -1,0 +1,59 @@
+File Manifest for ICPSR 37029
+
+AlKhatib, Walid, Michael Robbins, Musa Shutaywi, Amaney A. Jamal, Mark A.
+Tessler, Khalil Shiqaqi, Youssef Meddeb, Rabih Haber, Imen Mezlini, Hamid
+Latif, and Mhammed Abderebbi. Arab Barometer: Public Opinion Survey
+Conducted in Algeria, Egypt,  Jordan, Lebanon, Morocco, Palestine, and
+Tunisia, 2016. ICPSR37029-v1. Ann Arbor, MI: Inter-university Consortium
+for Political and Social Research [distributor], 2018-05-17.
+http://doi.org/10.3886/ICPSR37029.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37029-descriptioncitation.pdf       -       -         -       2018-05-18  -
+
+    37029-related_literature.txt        -       -         -       daily       -
+
+    37029-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Arab Barometer: Public Opinion Survey Conducted in Algeria, Egypt,
+Jordan, Lebanon, Morocco, Palestine, and Tunisia, 2016
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37029-0001-Codebook.pdf             -       -         -       2018-05-17  3259315ab42f58881112e0fdc0477f97
+
+    37029-0001-Data.dta                 -       9,000     290     2018-05-17  efd53450a60620f59495ec483539758c
+
+    37029-0001-Data.rda                 -       9,000     290     2018-05-17  9ddc3e0ec2e00da4de5276c4542275a3
+
+    37029-0001-Data.sav                 -       9,000     290     2018-05-17  08f488d51cef8484a799583cc30c8778
+
+    37029-0001-Data.stc                 -       9,000     290     2018-05-17  245a3874549581e39e2175d669bb592b
+
+    37029-0001-Data.tsv                 -       9,000     290     2018-05-17  4f2401de26c924598c44dc80f129c414
+
+    37029-0001-Data.txt                 668     9,000     290     2018-05-17  9c932f45345e4c8a8055129532918a19
+
+    37029-0001-Documentation.pdf        -       -         -       2018-05-17  01aa1dad983eceacb065fae7c33b5801
+
+    37029-0001-Questionnaire.pdf        -       -         -       2018-05-17  7cb5d0cc92c3971b02c69acbaed36466
+
+    37029-0001-Setup.dct                -       -         -       2018-05-17  1a92fa27031be506697f090f832a64bc
+
+    37029-0001-Setup.do                 -       -         -       2018-05-17  2332c34ba075840bbff94c64dde3d51d
+
+    37029-0001-Setup.sas                -       -         -       2018-05-17  0b3230b6e1d6048b0bbe2d31714a5a7c
+
+    37029-0001-Setup.sps                -       -         -       2018-05-17  2f661ce88bfcada2ebeb786a4539a84c
+
+    37029-0001-Supplemental_syntax.do   -       -         -       2018-05-17  60ea7474fa591bd31aaaa9aaadef93ec
+
+    37029-0001-Supplemental_syntax.sas  -       -         -       2018-05-17  cd5e55c7e42dc1b6ed5db74f9b5f3851
+

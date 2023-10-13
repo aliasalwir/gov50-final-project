@@ -1,0 +1,56 @@
+File Manifest for ICPSR 35040
+
+Jamal, Amaney, Mark Tessler, Khalil Shikaki, Mohammad Almasri, Michael
+Robbins, Abdenasser al-Jabi, Jamal Abdul Jawad, Munqith Dagher, Rabih Habr,
+El-Mogiera Al-Sayed, Iman Mizlini, and Fuad al-Salahi. Arab Barometer:
+Public Opinion Survey Conducted in Algeria, Egypt, Iraq, Jordan, Lebanon,
+Palestine, Saudi Arabia, Sudan, Tunisia, and Yemen, 2010-2011. ICPSR35040-
+v1. Ann Arbor, MI: Inter-university Consortium for Political and Social
+Research [distributor], 2014-04-30. http://doi.org/10.3886/ICPSR35040.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    35040-descriptioncitation.pdf       -       -         -       2015-11-17  -
+
+    35040-related_literature.txt        -       -         -       daily       -
+
+    35040-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Arab Barometer: Public Opinion Survey Conducted in Algeria, Egypt,
+Iraq, Jordan, Lebanon, Palestine, Saudi Arabia, Sudan, Tunisia, and Yemen,
+2010-2011
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    35040-0001-Codebook.pdf             -       -         -       2014-04-30  cafb96a61fd2198ee096699fe80d94b7
+
+    35040-0001-Data.dta                 -       12,782    469     2014-04-30  10855c08c359d78b5f9d5d4c728809ba
+
+    35040-0001-Data.rda                 -       12,782    469     2014-04-30  0a2ded69584a4f8ccc9649499f1a3954
+
+    35040-0001-Data.sav                 -       12,782    469     2014-04-30  d06356c9675e0ff60d7f11445846b4c4
+
+    35040-0001-Data.stc                 -       12,782    469     2014-04-30  868a3afba34973e7842984782210aa7a
+
+    35040-0001-Data.tsv                 -       12,782    469     2014-04-30  c550293a0144089cf0c4e4f05c4ecc6a
+
+    35040-0001-Data.txt                 709     12,782    469     2014-04-30  09d3a6b4f799b4d395d9ad70375d423d
+
+    35040-0001-Setup.dct                -       -         -       2014-04-30  e9eea0f19af0b83925f2982d2edd02bf
+
+    35040-0001-Setup.do                 -       -         -       2014-04-30  ba09ab2ee3296a51f4ae0e978afec0e5
+
+    35040-0001-Setup.sas                -       -         -       2014-04-30  8e53e765e0e8441264c689b2be59c209
+
+    35040-0001-Setup.sps                -       -         -       2014-04-30  788c7fcb8313dacf0bc28edf8a5a2134
+
+    35040-0001-Supplemental_syntax.do   -       -         -       2014-04-30  8607b4df2e9095804d2018c80ff53fc7
+
+    35040-0001-Supplemental_syntax.sas  -       -         -       2014-04-30  0941457a3f8ab023d6fa5d97c6bfae61
+

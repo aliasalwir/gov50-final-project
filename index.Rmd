@@ -48,10 +48,10 @@ data_plot <- da35040.0001 |>
       COUNTRY == "(1) 1. Algeria" ~ "Algeria", 
       COUNTRY == "(5) 5. Egypt" ~ "Egypt", 
       COUNTRY =="(7) 7. Iraq" ~ "Iraq",
+      COUNTRY == "(17) 17. Saudi Arabia" ~ "Saudi Arabia", 
       COUNTRY == "(8) 8. Jordan" ~ "Jordan",
       COUNTRY == "(10) 10. Lebanon" ~ "Lebanon", 
       COUNTRY == "(15) 15. Palestine" ~ "Palestine", 
-      COUNTRY == "(17) 17. Saudi Arabia" ~ "Saudi Arabia", 
       COUNTRY == "(19) 19. Sudan" ~ "Sudan",
       COUNTRY == "(21) 21. Tunisia" ~ "Tunisia", 
       COUNTRY == "(22) 22. Yemen" ~ "Yemen"
@@ -67,6 +67,6 @@ data_plot |>
        (1 being the most optimistic and 5 being the least optimistic)",
        title = "Mean of Economic Optimism over the Next 3-5 Years in Arab Countries",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")+
-  theme(axis.text = element_text(size = 8))
+  theme(text = element_text(size = 9))
 ```
 

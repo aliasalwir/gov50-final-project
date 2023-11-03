@@ -66,6 +66,7 @@ data_plot |>
        y = "Mean of Economic Optimism 
        (1 being the most optimistic and 5 being the least optimistic)",
        title = "Mean of Economic Optimism over the Next 3-5 Years in Arab Countries",
-       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")+
+  theme(axis.text = element_text(size = 8))
 ```
 

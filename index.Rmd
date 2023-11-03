@@ -28,3 +28,44 @@ load("data/ICPSR_36273/DS0001/36273-0001-Data.rda")
 load("data/ICPSR_37029/DS0001/37029-0001-Data.rda")
 ```
 
+
+## Milestone 3
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+data_plot <- da35040.0001 |> 
+  mutate(
+    Q102A = case_when(Q102 == "(5) 5. much worse" ~ 5,
+                      Q102 == "(4) 4. somewhat worse" ~ 4,
+                      Q102 == "(3) 3. almost the same as the current situation" ~ 3,
+                      Q102 == "(2) 2. somewhat better" ~ 2,
+                      Q102 == "(1) 1. much better" ~ 1, 
+                      TRUE ~ NA_real_),
+    Countries = case_when(
+      COUNTRY == "(1) 1. Algeria" ~ "Algeria", 
+      COUNTRY == "(5) 5. Egypt" ~ "Egypt", 
+      COUNTRY =="(7) 7. Iraq" ~ "Iraq",
+      COUNTRY == "(8) 8. Jordan" ~ "Jordan",
+      COUNTRY == "(10) 10. Lebanon" ~ "Lebanon", 
+      COUNTRY == "(15) 15. Palestine" ~ "Palestine", 
+      COUNTRY == "(17) 17. Saudi Arabia" ~ "Saudi Arabia", 
+      COUNTRY == "(19) 19. Sudan" ~ "Sudan",
+      COUNTRY == "(21) 21. Tunisia" ~ "Tunisia", 
+      COUNTRY == "(22) 22. Yemen" ~ "Yemen"
+    ))|>
+    group_by(Countries)|>
+    summarize(mean_Q102=mean(Q102A,na.rm = T))
+  
+data_plot |>  
+  ggplot(aes(y = mean_Q102, x = Countries))+
+  geom_point()+
+  labs(x = "Country", 
+       y = "Mean of Economic Optimism 
+       (1 being the most optimistic and 5 being the least optimistic)",
+       title = "Mean of Economic Optimism over the Next 3-5 Years in Arab Countries",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
+```
+

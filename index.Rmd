@@ -66,8 +66,57 @@ data_plot |>
        y = "Mean of Economic Optimism 
        (1 being the most optimistic and 5 being the least optimistic)",
        title = "Mean of Economic Optimism over the Next 3-5 Years in Arab Countries",
-       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")+
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 20010-2011")+
   theme(axis.title.y = element_text(size = 8), 
         text = element_text(size = 8))
 ```
+
+## Milestone 4
+```{r}
+data_06_09 <- da26581.0001|>
+  mutate(
+    Q102 = case_when(Q102 == "(5) 5. much worse" ~ 5,
+                      Q102 == "(4) 4. somewhat worse" ~ 4,
+                      Q102 == "(3) 3. almost the same as the current situation" ~ 3,
+                      Q102 == "(2) 2. somewhat better" ~ 2,
+                      Q102 == "(1) 1. much better" ~ 1, 
+                      TRUE ~ NA_real_),
+    Countries = case_when(
+      COUNTRY == "(1) jordan" ~ "Jordan", 
+      COUNTRY == "(2) palestine" ~ "Palestine", 
+      COUNTRY == "(3) algeria" ~ "Algeria", 
+      COUNTRY =="(4) morocco" ~ "Morocco",
+      COUNTRY =="(5) kuwait" ~ "Kuwait",
+      COUNTRY == "(6) lebanon" ~ "Lebanon", 
+      COUNTRY == "(7) yemen" ~ "Yemen",
+      COUNTRY == "(8) bahrain" ~ "Bahrain"
+    ))|>
+    group_by(Countries)|>
+    summarize(mean_Q102=mean(Q102A,na.rm = T))
+  
+data_06_09 |>  
+  ggplot(aes(y = mean_Q102, x = Countries))+
+  geom_point()+
+  labs(x = "Country", 
+       y = "Mean of Economic Optimism 
+       (1 being the most optimistic and 5 being the least optimistic)",
+       title = "Mean of Economic Optimism over the Next 3-5 Years in Arab Countries",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")+
+  theme(axis.title.y = element_text(size = 8), 
+        text = element_text(size = 8))
+
+```
+
+```{r}
+da26581.001|>
+  list("COUNTRY")
+```
+
+
+
+
+
+
+
+
 

@@ -71,7 +71,8 @@ data_plot |>
         text = element_text(size = 8))
 ```
 
-## Milestone 4
+## Attempts at Milsetone 4
+Actual answer is below
 ```{r, eval=FALSE}
 data_06_09_econ <- da26581.0001|>
   mutate(
@@ -229,8 +230,10 @@ regression.data <- da26581.0001|>
 fit1 <- lm(mean_trust ~ mean_Q102B, data=regression.data )
 summary(fit1)
 ```
+ 
+ KINDLY DISREGARD ALL PREVIOUS CODE :)
 
-
+## ACTUAL Milestone 4
 
 ```{r}
 first.regression <- da26581.0001|>

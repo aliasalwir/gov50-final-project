@@ -38,7 +38,7 @@ library(tidyverse)
 ```{r}
 data_plot <- da35040.0001 |> 
   mutate(
-    Q102A = case_when(Q102 == "(5) 5. much worse" ~ 5,
+    Q102 = case_when(Q102 == "(5) 5. much worse" ~ 5,
                       Q102 == "(4) 4. somewhat worse" ~ 4,
                       Q102 == "(3) 3. almost the same as the current situation" ~ 3,
                       Q102 == "(2) 2. somewhat better" ~ 2,
@@ -57,7 +57,7 @@ data_plot <- da35040.0001 |>
       COUNTRY == "(22) 22. Yemen" ~ "Yemen"
     ))|>
     group_by(Countries)|>
-    summarize(mean_Q102=mean(Q102A,na.rm = T))
+    summarize(mean_Q102=mean(Q102,na.rm = T))
   
 data_plot |>  
   ggplot(aes(y = mean_Q102, x = Countries))+
@@ -66,36 +66,35 @@ data_plot |>
        y = "Mean of Economic Optimism 
        (1 being the most optimistic and 5 being the least optimistic)",
        title = "Mean of Economic Optimism over the Next 3-5 Years in Arab Countries",
-       subtitle = "Source: Arab Barometer: Public Opinion Survey 20010-2011")+
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")+
   theme(axis.title.y = element_text(size = 8), 
         text = element_text(size = 8))
 ```
 
 ## Milestone 4
-```{r}
-data_06_09 <- da26581.0001|>
+```{r, eval=FALSE}
+data_06_09_econ <- da26581.0001|>
   mutate(
-    Q102 = case_when(Q102 == "(5) 5. much worse" ~ 5,
-                      Q102 == "(4) 4. somewhat worse" ~ 4,
-                      Q102 == "(3) 3. almost the same as the current situation" ~ 3,
-                      Q102 == "(2) 2. somewhat better" ~ 2,
-                      Q102 == "(1) 1. much better" ~ 1, 
+    Q102B = case_when(Q102 == "(5) much worse" ~ 5,
+                      Q102 == "(4) a little worse" ~ 4,
+                      Q102 == "(3) about the same" ~ 3,
+                      Q102 == "(2) a little better" ~ 2,
+                      Q102 == "(1) much better" ~ 1, 
                       TRUE ~ NA_real_),
     Countries = case_when(
       COUNTRY == "(1) jordan" ~ "Jordan", 
       COUNTRY == "(2) palestine" ~ "Palestine", 
       COUNTRY == "(3) algeria" ~ "Algeria", 
       COUNTRY =="(4) morocco" ~ "Morocco",
-      COUNTRY =="(5) kuwait" ~ "Kuwait",
       COUNTRY == "(6) lebanon" ~ "Lebanon", 
       COUNTRY == "(7) yemen" ~ "Yemen",
       COUNTRY == "(8) bahrain" ~ "Bahrain"
     ))|>
     group_by(Countries)|>
-    summarize(mean_Q102=mean(Q102A,na.rm = T))
+    summarize(mean_Q102B=mean(Q102B,na.rm = T))
   
-data_06_09 |>  
-  ggplot(aes(y = mean_Q102, x = Countries))+
+data_06_09_econ  |>  
+  ggplot(aes(y = mean_Q102B, x = Countries))+
   geom_point()+
   labs(x = "Country", 
        y = "Mean of Economic Optimism 
@@ -107,15 +106,198 @@ data_06_09 |>
 
 ```
 
-```{r}
-da26581.001|>
-  list("COUNTRY")
+
+
+
+```{r, eval=FALSE}
+data_06_09_trust <- da26581.0001|>
+  mutate(
+    Q2011A = case_when(Q2011 == "(1) a great deal of trust" ~ 1,
+                      Q2011 == "(2) quite a lot of trust" ~ 2,
+                      Q2011 == "(3) not very much trust" ~ 3,
+                      Q2011 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2012A = case_when(Q2012 == "(1) a great deal of trust" ~ 1,
+                      Q2012 == "(2) quite a lot of trust" ~ 2,
+                      Q2012 == "(3) not very much trust" ~ 3,
+                      Q2012 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2013A = case_when(Q2013 == "(1) a great deal of trust" ~ 1,
+                      Q2013 == "(2) quite a lot of trust" ~ 2,
+                      Q2013 == "(3) not very much trust" ~ 3,
+                      Q2013 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2014A = case_when(Q2014 == "(1) a great deal of trust" ~ 1,
+                      Q2014 == "(2) quite a lot of trust" ~ 2,
+                      Q2014 == "(3) not very much trust" ~ 3,
+                      Q2014 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2015A = case_when(Q2015 == "(1) a great deal of trust" ~ 1,
+                      Q2015 == "(2) quite a lot of trust" ~ 2,
+                      Q2015 == "(3) not very much trust" ~ 3,
+                      Q2015 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+     Countries = case_when(
+      COUNTRY == "(1) jordan" ~ "Jordan", 
+      COUNTRY == "(2) palestine" ~ "Palestine", 
+      COUNTRY == "(3) algeria" ~ "Algeria", 
+      COUNTRY =="(4) morocco" ~ "Morocco",
+      COUNTRY == "(6) lebanon" ~ "Lebanon", 
+      COUNTRY == "(7) yemen" ~ "Yemen",
+      COUNTRY == "(8) bahrain" ~ "Bahrain"))|>
+    group_by(Countries)|>
+    summarize(mean_Q2011A = mean(Q2011A,na.rm = T),
+              mean_Q2012A = mean(Q2012A,na.rm = T),
+              mean_Q2013A = mean(Q2013A,na.rm = T), 
+              mean_Q2014A = mean(Q2014A,na.rm = T), 
+              mean_Q2015A = mean(Q2015A,na.rm = T))|>
+  mutate(mean_trust = mean_Q2011A + mean_Q2012A + mean_Q2013A + mean_Q2014A + mean_Q2015A)
+
+data_06_09_trust|>
+  ggplot(aes(y = mean_trust, x = Countries))+
+  geom_point()+
+  labs(x = "Country", 
+       y = "Mean of Trust In Government Institutions  
+       (1 being the most trust and 4 being the least trust)",
+       title = "Mean of Trust in Government Institutions in Arab Countries",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")+
+  theme(axis.title.y = element_text(size = 8), 
+        text = element_text(size = 8))
+
+
+```
+
+
+```{r, eval=FALSE}
+data_06_09_trust & data_06_09_econ|>
+  group_by(Countries)|>
+  ggplot(aes(y = mean_trust, x = mean_Q102B))+
+  geom_point()+
+  labs(x = "Mean of Economic Optimism 
+       (1 being the most optimistic and 5 being the least optimistic)", 
+       y = "Mean of Trust In Government Institutions,  
+       (1 being the most trust and 4 being the least trust)",
+       title = "Trust in Government Institutions Against Economic Optimism",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
+  
+  
+```
+
+
+REGRESSION
+
+```{r, eval=FALSE}
+# TEMPLATE
+
+regression.data <- da26581.0001|>
+  mutate(
+    Q2011A = case_when(Q2011 == "(1) a great deal of trust" ~ 1,
+                      Q2011 == "(2) quite a lot of trust" ~ 2,
+                      Q2011 == "(3) not very much trust" ~ 3,
+                      Q2011 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2012A = case_when(Q2012 == "(1) a great deal of trust" ~ 1,
+                      Q2012 == "(2) quite a lot of trust" ~ 2,
+                      Q2012 == "(3) not very much trust" ~ 3,
+                      Q2012 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2013A = case_when(Q2013 == "(1) a great deal of trust" ~ 1,
+                      Q2013 == "(2) quite a lot of trust" ~ 2,
+                      Q2013 == "(3) not very much trust" ~ 3,
+                      Q2013 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2014A = case_when(Q2014 == "(1) a great deal of trust" ~ 1,
+                      Q2014 == "(2) quite a lot of trust" ~ 2,
+                      Q2014 == "(3) not very much trust" ~ 3,
+                      Q2014 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2015A = case_when(Q2015 == "(1) a great deal of trust" ~ 1,
+                      Q2015 == "(2) quite a lot of trust" ~ 2,
+                      Q2015 == "(3) not very much trust" ~ 3,
+                      Q2015 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+     Countries = case_when(
+      COUNTRY == "(1) jordan" ~ "Jordan", 
+      COUNTRY == "(2) palestine" ~ "Palestine", 
+      COUNTRY == "(3) algeria" ~ "Algeria", 
+      COUNTRY =="(4) morocco" ~ "Morocco",
+      COUNTRY == "(6) lebanon" ~ "Lebanon", 
+      COUNTRY == "(7) yemen" ~ "Yemen",
+      COUNTRY == "(8) bahrain" ~ "Bahrain")) |>
+  mutate(mean_trust=sum(Q2011A,Q2012A,Q2013A,Q2014A,Q2015A,na.rm=T))
+
+fit1 <- lm(mean_trust ~ mean_Q102B, data=regression.data )
+summary(fit1)
 ```
 
 
 
+```{r}
+first.regression <- da26581.0001|>
+  mutate(
+    Q2011A = case_when(Q2011 == "(1) a great deal of trust" ~ 1,
+                      Q2011 == "(2) quite a lot of trust" ~ 2,
+                      Q2011 == "(3) not very much trust" ~ 3,
+                      Q2011 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2012A = case_when(Q2012 == "(1) a great deal of trust" ~ 1,
+                      Q2012 == "(2) quite a lot of trust" ~ 2,
+                      Q2012 == "(3) not very much trust" ~ 3,
+                      Q2012 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2013A = case_when(Q2013 == "(1) a great deal of trust" ~ 1,
+                      Q2013 == "(2) quite a lot of trust" ~ 2,
+                      Q2013 == "(3) not very much trust" ~ 3,
+                      Q2013 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2014A = case_when(Q2014 == "(1) a great deal of trust" ~ 1,
+                      Q2014 == "(2) quite a lot of trust" ~ 2,
+                      Q2014 == "(3) not very much trust" ~ 3,
+                      Q2014 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+    Q2015A = case_when(Q2015 == "(1) a great deal of trust" ~ 1,
+                      Q2015 == "(2) quite a lot of trust" ~ 2,
+                      Q2015 == "(3) not very much trust" ~ 3,
+                      Q2015 == "(4) none at all" ~ 4,
+                      TRUE ~ NA_real_),
+     Countries = case_when(
+      COUNTRY == "(1) jordan" ~ "Jordan", 
+      COUNTRY == "(2) palestine" ~ "Palestine", 
+      COUNTRY == "(3) algeria" ~ "Algeria", 
+      COUNTRY =="(4) morocco" ~ "Morocco",
+      COUNTRY == "(6) lebanon" ~ "Lebanon", 
+      COUNTRY == "(7) yemen" ~ "Yemen",
+      COUNTRY == "(8) bahrain" ~ "Bahrain"),
+    Q102B = case_when(Q102 == "(5) much worse" ~ 5,
+                      Q102 == "(4) a little worse" ~ 4,
+                      Q102 == "(3) about the same" ~ 3,
+                      Q102 == "(2) a little better" ~ 2,
+                      Q102 == "(1) much better" ~ 1, 
+                      TRUE ~ NA_real_)) |>
+  rename(economic_opporunity =  Q102B)
 
+first.regression$mean_trust <- rowMeans(first.regression[,c('Q2011A','Q2012A','Q2013A','Q2014A','Q2015A')],na.rm = T)
 
+first.regression|>
+  #group_by(Countries)|>
+  ggplot(aes(y = mean_trust, x = economic_opporunity))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs(x = "Mean of Economic Optimism 
+       (1 being the most optimistic and 5 being the least optimistic)", 
+       y = "Mean of Trust In Government Institutions  
+       (1 being the most trust and 4 being the least trust)",
+       title = "Trust in Government Institutions Against Economic Optimism",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
+
+fit1 <- lm(mean_trust ~ economic_opporunity, data = first.regression)
+summary(fit1)
+
+#install.packages("texreg")
+library(texreg)
+screenreg(fit1)
+```
+The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa. 
 
 
 

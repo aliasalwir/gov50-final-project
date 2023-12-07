@@ -277,7 +277,12 @@ first.regression <- da26581.0001|>
                       Q102 == "(2) a little better" ~ 2,
                       Q102 == "(1) much better" ~ 1, 
                       TRUE ~ NA_real_)) |>
-  rename(economic_opporunity =  Q102B)
+  rename(economic_opporunity =  Q102B,
+         Age = Q701AGECATEGORIES,
+         Sex = Q702, 
+         Education = Q703,
+         Employment = Q704,
+         Religion = Q711)
 
 first.regression$mean_trust <- rowMeans(first.regression[,c('Q2011A','Q2012A','Q2013A','Q2014A','Q2015A')],na.rm = T)
 
@@ -293,12 +298,17 @@ first.regression|>
        title = "Trust in Government Institutions Against Economic Optimism",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
 
-fit1 <- lm(mean_trust ~ economic_opporunity, data = first.regression)
+fit1 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education + Religion + Employment, data = first.regression)
 summary(fit1)
+
+fit2 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education+factor(Countries), data = first.regression)
+summary(fit2)
+unique(first.regression$Countries)
 
 #install.packages("texreg")
 library(texreg)
 screenreg(fit1)
+screenreg(fit2)
 ```
 The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa. 
 

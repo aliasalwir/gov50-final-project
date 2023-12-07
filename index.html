@@ -1775,7 +1775,12 @@ Actual answer is below
 <span>                      <span class='va'>Q102</span> <span class='op'>==</span> <span class='st'>"(2) a little better"</span> <span class='op'>~</span> <span class='fl'>2</span>,</span>
 <span>                      <span class='va'>Q102</span> <span class='op'>==</span> <span class='st'>"(1) much better"</span> <span class='op'>~</span> <span class='fl'>1</span>, </span>
 <span>                      <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='cn'>NA_real_</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>economic_opporunity <span class='op'>=</span>  <span class='va'>Q102B</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>economic_opporunity <span class='op'>=</span>  <span class='va'>Q102B</span>,</span>
+<span>         Age <span class='op'>=</span> <span class='va'>Q701AGECATEGORIES</span>,</span>
+<span>         Sex <span class='op'>=</span> <span class='va'>Q702</span>, </span>
+<span>         Education <span class='op'>=</span> <span class='va'>Q703</span>,</span>
+<span>         Employment <span class='op'>=</span> <span class='va'>Q704</span>,</span>
+<span>         Religion <span class='op'>=</span> <span class='va'>Q711</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>first.regression</span><span class='op'>$</span><span class='va'>mean_trust</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span><span class='op'>(</span><span class='va'>first.regression</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Q2011A'</span>,<span class='st'>'Q2012A'</span>,<span class='st'>'Q2013A'</span>,<span class='st'>'Q2014A'</span>,<span class='st'>'Q2015A'</span><span class='op'>)</span><span class='op'>]</span>,na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span></span>
 <span></span>
@@ -1793,50 +1798,251 @@ Actual answer is below
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mean_trust</span> <span class='op'>~</span> <span class='va'>economic_opporunity</span>, data <span class='op'>=</span> <span class='va'>first.regression</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mean_trust</span> <span class='op'>~</span> <span class='va'>economic_opporunity</span> <span class='op'>+</span> <span class='va'>Age</span> <span class='op'>+</span> <span class='va'>Sex</span> <span class='op'>+</span><span class='va'>Education</span> <span class='op'>+</span> <span class='va'>Religion</span> <span class='op'>+</span> <span class='va'>Employment</span>, data <span class='op'>=</span> <span class='va'>first.regression</span><span class='op'>)</span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
-lm(formula = mean_trust ~ economic_opporunity, data = first.regression)
+lm(formula = mean_trust ~ economic_opporunity + Age + Sex + Education + 
+    Religion + Employment, data = first.regression)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.08510 -0.52684  0.07316  0.68360  1.67316 
+-2.37298 -0.54394 -0.02545  0.52943  1.97251 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         2.137271   0.024109   88.65   &lt;2e-16 ***
-economic_opporunity 0.189566   0.007765   24.41   &lt;2e-16 ***
+                                               Estimate Std. Error
+(Intercept)                                    1.876641   0.071450
+economic_opporunity                            0.186349   0.008812
+Age(2) 25-34                                   0.036393   0.034193
+Age(3) 35-44                                   0.043179   0.035904
+Age(4) 45-54                                   0.060459   0.040940
+Age(5) 55-64                                   0.009295   0.053735
+Age(6) 65-74                                  -0.144166   0.071520
+Age(7) 75 and older                            0.082664   0.145152
+Sex(2) female                                  0.027471   0.026000
+Education(2) elementary                        0.051095   0.063842
+Education(3) primary                          -0.010018   0.060116
+Education(4) secondary                         0.026076   0.058933
+Education(5) college diploma- two years        0.085089   0.064753
+Education(6) ba                                0.089825   0.061823
+Education(7) ma or higher                      0.005130   0.092091
+Religion(2) christian                          0.555292   0.037196
+Religion(3) sunni muslim (lebanon &amp; bahrain)   0.116630   0.041852
+Religion(4) shiite muslim (lebanon &amp; bahrain)  0.344918   0.039573
+Religion(5) druze (lebanon)                    0.475570   0.088371
+Employment(2) no                              -0.125436   0.028658
+                                              t value Pr(&gt;|t|)    
+(Intercept)                                    26.265  &lt; 2e-16 ***
+economic_opporunity                            21.148  &lt; 2e-16 ***
+Age(2) 25-34                                    1.064  0.28724    
+Age(3) 35-44                                    1.203  0.22919    
+Age(4) 45-54                                    1.477  0.13981    
+Age(5) 55-64                                    0.173  0.86268    
+Age(6) 65-74                                   -2.016  0.04389 *  
+Age(7) 75 and older                             0.570  0.56905    
+Sex(2) female                                   1.057  0.29077    
+Education(2) elementary                         0.800  0.42356    
+Education(3) primary                           -0.167  0.86766    
+Education(4) secondary                          0.442  0.65818    
+Education(5) college diploma- two years         1.314  0.18890    
+Education(6) ba                                 1.453  0.14632    
+Education(7) ma or higher                       0.056  0.95558    
+Religion(2) christian                          14.929  &lt; 2e-16 ***
+Religion(3) sunni muslim (lebanon &amp; bahrain)    2.787  0.00535 ** 
+Religion(4) shiite muslim (lebanon &amp; bahrain)   8.716  &lt; 2e-16 ***
+Religion(5) druze (lebanon)                     5.382 7.79e-08 ***
+Employment(2) no                               -4.377 1.23e-05 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.7949 on 6513 degrees of freedom
-  (822 observations deleted due to missingness)
-Multiple R-squared:  0.08384,   Adjusted R-squared:  0.0837 
-F-statistic:   596 on 1 and 6513 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.7444 on 4184 degrees of freedom
+  (3133 observations deleted due to missingness)
+Multiple R-squared:  0.1724,    Adjusted R-squared:  0.1687 
+F-statistic: 45.88 on 19 and 4184 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mean_trust</span> <span class='op'>~</span> <span class='va'>economic_opporunity</span> <span class='op'>+</span> <span class='va'>Age</span> <span class='op'>+</span> <span class='va'>Sex</span> <span class='op'>+</span><span class='va'>Education</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>Countries</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>first.regression</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit2</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = mean_trust ~ economic_opporunity + Age + Sex + Education + 
+    factor(Countries), data = first.regression)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.49885 -0.52523  0.04358  0.53547  2.16266 
+
+Coefficients:
+                                         Estimate Std. Error t value
+(Intercept)                              2.295737   0.049558  46.324
+economic_opporunity                      0.215597   0.007245  29.757
+Age(2) 25-34                             0.015166   0.025179   0.602
+Age(3) 35-44                             0.045065   0.027478   1.640
+Age(4) 45-54                             0.036193   0.032212   1.124
+Age(5) 55-64                             0.069721   0.041811   1.668
+Age(6) 65-74                            -0.082371   0.055990  -1.471
+Age(7) 75 and older                      0.168171   0.097610   1.723
+Sex(2) female                           -0.104280   0.018261  -5.711
+Education(2) elementary                  0.037914   0.039196   0.967
+Education(3) primary                     0.017430   0.039197   0.445
+Education(4) secondary                   0.050948   0.039108   1.303
+Education(5) college diploma- two years  0.103522   0.045016   2.300
+Education(6) ba                          0.111115   0.040922   2.715
+Education(7) ma or higher                0.095735   0.055076   1.738
+factor(Countries)Bahrain                -0.458011   0.043019 -10.647
+factor(Countries)Jordan                 -0.823229   0.032110 -25.637
+factor(Countries)Lebanon                -0.001150   0.031991  -0.036
+factor(Countries)Morocco                -0.016870   0.034092  -0.495
+factor(Countries)Palestine              -0.557631   0.031567 -17.665
+factor(Countries)Yemen                   0.001164   0.037361   0.031
+                                        Pr(&gt;|t|)    
+(Intercept)                              &lt; 2e-16 ***
+economic_opporunity                      &lt; 2e-16 ***
+Age(2) 25-34                             0.54697    
+Age(3) 35-44                             0.10104    
+Age(4) 45-54                             0.26123    
+Age(5) 55-64                             0.09546 .  
+Age(6) 65-74                             0.14129    
+Age(7) 75 and older                      0.08496 .  
+Sex(2) female                           1.18e-08 ***
+Education(2) elementary                  0.33344    
+Education(3) primary                     0.65656    
+Education(4) secondary                   0.19271    
+Education(5) college diploma- two years  0.02150 *  
+Education(6) ba                          0.00664 ** 
+Education(7) ma or higher                0.08222 .  
+factor(Countries)Bahrain                 &lt; 2e-16 ***
+factor(Countries)Jordan                  &lt; 2e-16 ***
+factor(Countries)Lebanon                 0.97132    
+factor(Countries)Morocco                 0.62073    
+factor(Countries)Palestine               &lt; 2e-16 ***
+factor(Countries)Yemen                   0.97516    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7209 on 6444 degrees of freedom
+  (872 observations deleted due to missingness)
+Multiple R-squared:  0.2492,    Adjusted R-squared:  0.2469 
+F-statistic:   107 on 20 and 6444 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>first.regression</span><span class='op'>$</span><span class='va'>Countries</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;Jordan&quot;    &quot;Palestine&quot; &quot;Algeria&quot;   &quot;Morocco&quot;   &quot;Lebanon&quot;  
+[6] &quot;Yemen&quot;     &quot;Bahrain&quot;  </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#install.packages("texreg")</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/leifeld/texreg/'>texreg</a></span><span class='op'>)</span></span>
 <span><span class='fu'><a href='https://rdrr.io/pkg/texreg/man/screenreg.html'>screenreg</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
-================================
-                     Model 1    
---------------------------------
-(Intercept)             2.14 ***
-                       (0.02)   
-economic_opporunity     0.19 ***
-                       (0.01)   
---------------------------------
-R^2                     0.08    
-Adj. R^2                0.08    
-Num. obs.            6515       
-================================
+==========================================================
+                                               Model 1    
+----------------------------------------------------------
+(Intercept)                                       1.88 ***
+                                                 (0.07)   
+economic_opporunity                               0.19 ***
+                                                 (0.01)   
+Age(2) 25-34                                      0.04    
+                                                 (0.03)   
+Age(3) 35-44                                      0.04    
+                                                 (0.04)   
+Age(4) 45-54                                      0.06    
+                                                 (0.04)   
+Age(5) 55-64                                      0.01    
+                                                 (0.05)   
+Age(6) 65-74                                     -0.14 *  
+                                                 (0.07)   
+Age(7) 75 and older                               0.08    
+                                                 (0.15)   
+Sex(2) female                                     0.03    
+                                                 (0.03)   
+Education(2) elementary                           0.05    
+                                                 (0.06)   
+Education(3) primary                             -0.01    
+                                                 (0.06)   
+Education(4) secondary                            0.03    
+                                                 (0.06)   
+Education(5) college diploma- two years           0.09    
+                                                 (0.06)   
+Education(6) ba                                   0.09    
+                                                 (0.06)   
+Education(7) ma or higher                         0.01    
+                                                 (0.09)   
+Religion(2) christian                             0.56 ***
+                                                 (0.04)   
+Religion(3) sunni muslim (lebanon &amp; bahrain)      0.12 ** 
+                                                 (0.04)   
+Religion(4) shiite muslim (lebanon &amp; bahrain)     0.34 ***
+                                                 (0.04)   
+Religion(5) druze (lebanon)                       0.48 ***
+                                                 (0.09)   
+Employment(2) no                                 -0.13 ***
+                                                 (0.03)   
+----------------------------------------------------------
+R^2                                               0.17    
+Adj. R^2                                          0.17    
+Num. obs.                                      4204       
+==========================================================
+*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/texreg/man/screenreg.html'>screenreg</a></span><span class='op'>(</span><span class='va'>fit2</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+====================================================
+                                         Model 1    
+----------------------------------------------------
+(Intercept)                                 2.30 ***
+                                           (0.05)   
+economic_opporunity                         0.22 ***
+                                           (0.01)   
+Age(2) 25-34                                0.02    
+                                           (0.03)   
+Age(3) 35-44                                0.05    
+                                           (0.03)   
+Age(4) 45-54                                0.04    
+                                           (0.03)   
+Age(5) 55-64                                0.07    
+                                           (0.04)   
+Age(6) 65-74                               -0.08    
+                                           (0.06)   
+Age(7) 75 and older                         0.17    
+                                           (0.10)   
+Sex(2) female                              -0.10 ***
+                                           (0.02)   
+Education(2) elementary                     0.04    
+                                           (0.04)   
+Education(3) primary                        0.02    
+                                           (0.04)   
+Education(4) secondary                      0.05    
+                                           (0.04)   
+Education(5) college diploma- two years     0.10 *  
+                                           (0.05)   
+Education(6) ba                             0.11 ** 
+                                           (0.04)   
+Education(7) ma or higher                   0.10    
+                                           (0.06)   
+factor(Countries)Bahrain                   -0.46 ***
+                                           (0.04)   
+factor(Countries)Jordan                    -0.82 ***
+                                           (0.03)   
+factor(Countries)Lebanon                   -0.00    
+                                           (0.03)   
+factor(Countries)Morocco                   -0.02    
+                                           (0.03)   
+factor(Countries)Palestine                 -0.56 ***
+                                           (0.03)   
+factor(Countries)Yemen                      0.00    
+                                           (0.04)   
+----------------------------------------------------
+R^2                                         0.25    
+Adj. R^2                                    0.25    
+Num. obs.                                6465       
+====================================================
 *** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
 </div>
 <p>The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

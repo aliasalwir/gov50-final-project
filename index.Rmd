@@ -381,12 +381,10 @@ data_2010_2011 <- da35040.0001 |>
          Sex = Q1002, 
          Education = Q1003,
          Employment = Q1004,
-         Religion = Q1012)|>
-  summarize(mean_trust_2011 = (mean(Q2011B) + mean(Q2012B) + mean(Q2013B) + mean(Q2014B) + mean(Q2015B) 
-                               + mean(Q2016B) + mean(Q2017B)  / 7))
+         Religion = Q1012)
 
-
-data_2010_2011$mean_trust_2011 <- rowMeans(first.regression[,c('Q2011B','Q2012B','Q2013B','Q2014B','Q2015B', 'Q2016B', 'Q2017B')],na.rm = T)
+data_2010_2011|>
+  rowMeans(first.regression[,c('Q2011B','Q2012B','Q2013B','Q2014B','Q2015B', 'Q2016B', 'Q2017B')],na.rm = T)
 
     
 data_2010_2011|>

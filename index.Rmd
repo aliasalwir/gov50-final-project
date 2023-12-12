@@ -232,6 +232,13 @@ summary(fit1)
 ```
  
  KINDLY DISREGARD ALL PREVIOUS CODE :)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 ## ACTUAL Milestone 4
 
@@ -312,6 +319,92 @@ screenreg(fit2)
 ```
 The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa. 
 
+## 2010 - 2011 data 
+
+```{r}
+data_2010_2011 <- da35040.0001 |> 
+  mutate(
+    Q102 = case_when(Q102 == "(5) 5. much worse" ~ 5,
+                      Q102 == "(4) 4. somewhat worse" ~ 4,
+                      Q102 == "(3) 3. almost the same as the current situation" ~ 3,
+                      Q102 == "(2) 2. somewhat better" ~ 2,
+                      Q102 == "(1) 1. much better" ~ 1, 
+                      TRUE ~ NA_real_),
+    Countries = case_when(
+      COUNTRY == "(1) 1. Algeria" ~ "Algeria", 
+      COUNTRY == "(5) 5. Egypt" ~ "Egypt", 
+      COUNTRY =="(7) 7. Iraq" ~ "Iraq",
+      COUNTRY == "(17) 17. Saudi Arabia" ~ "Saudi Arabia", 
+      COUNTRY == "(8) 8. Jordan" ~ "Jordan",
+      COUNTRY == "(10) 10. Lebanon" ~ "Lebanon", 
+      COUNTRY == "(15) 15. Palestine" ~ "Palestine", 
+      COUNTRY == "(19) 19. Sudan" ~ "Sudan",
+      COUNTRY == "(21) 21. Tunisia" ~ "Tunisia", 
+      COUNTRY == "(22) 22. Yemen" ~ "Yemen"),
+    Q2011B = case_when(Q2011 == "(1) a great deal of trust" ~ 1,
+                       Q2011 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2011 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2011 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_),
+    Q2012B = case_when(Q2012 == "(1) a great deal of trust" ~ 1,
+                       Q2012 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2012 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2012 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_),
+    Q2013B = case_when(Q2013 == "(1) a great deal of trust" ~ 1,
+                       Q2013 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2013 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2013 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_),
+    Q2014B = case_when(Q2014 == "(1) a great deal of trust" ~ 1,
+                       Q2014 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2014 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2014 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_),
+    Q2015B = case_when(Q2015 == "(1) a great deal of trust" ~ 1,
+                       Q2015 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2015 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2015 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_),
+    Q2016B = case_when(Q2016 == "(1) a great deal of trust" ~ 1,
+                       Q2016 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2016 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2016 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_),
+    Q2017B = case_when(Q2017 == "(1) a great deal of trust" ~ 1,
+                       Q2017 == "(2) 2. i trust it to a medium extent" ~ 2,
+                       Q2017 == "(3) 3. i trust it to a limited extent" ~ 3,
+                       Q2017 == "(4) 4. i absolutely do not trust it" ~ 4,
+                       TRUE ~ NA_real_))|>
+  rename(economic_opporunity_2011 =  Q102,
+         Age = Q1001,
+         Sex = Q1002, 
+         Education = Q1003,
+         Employment = Q1004,
+         Religion = Q1012)|>
+  summarize(mean_trust_2011 = (mean(Q2011B) + mean(Q2012B) + mean(Q2013B) + mean(Q2014B) + mean(Q2015B) 
+                               + mean(Q2016B) + mean(Q2017B)  / 7))
 
 
+data_2010_2011$mean_trust_2011 <- rowMeans(first.regression[,c('Q2011B','Q2012B','Q2013B','Q2014B','Q2015B', 'Q2016B', 'Q2017B')],na.rm = T)
+
+    
+data_2010_2011|>
+  ggplot(aes(y = mean_trust_2011, x = economic_opporunity_2011))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs(x = "Mean of Economic Optimism 
+       (1 being the most optimistic and 5 being the least optimistic)", 
+       y = "Mean of Trust In Government Institutions  
+       (1 being the most trust and 4 being the least trust)",
+       title = "Trust in Government Institutions Against Economic Optimism",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")
+  
+fit1_2011 <- lm(mean_trust_2011 ~ economic_opporunity_2011 + Age + Sex + Education + Religion + Employment, data = data_2010_2011)
+summary(fit1)
+
+fit2 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education+factor(Countries), data = data_2010_2011)
+summary(fit2)
+
+```
 

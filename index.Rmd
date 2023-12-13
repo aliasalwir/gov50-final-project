@@ -242,6 +242,8 @@ summary(fit1)
 
 ## 2006-2009 Data
 
+# Coding
+
 ```{r}
 first.regression <- da26581.0001|>
   mutate(
@@ -293,7 +295,7 @@ first.regression <- da26581.0001|>
 
 first.regression$mean_trust <- rowMeans(first.regression[,c('Q2011A','Q2012A','Q2013A','Q2014A','Q2015A')],na.rm = T)
 
-first.regression|>
+graph_2006_2009 <- first.regression|>
   #group_by(Countries)|>
   ggplot(aes(y = mean_trust, x = economic_opporunity))+
   geom_point()+
@@ -302,7 +304,7 @@ first.regression|>
        (1 being the most optimistic and 5 being the least optimistic)", 
        y = "Trust In Government Institutions  
        (1 being the most trust and 4 being the least trust)",
-       title = "Trust in Government Institutions Against Economic Optimism",
+       title = "Trust in Government Institutions Against Economic Optimism (2006-2009)",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
 
 fit1 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education + Religion + Employment, data = first.regression)
@@ -319,12 +321,14 @@ screenreg(fit2)
 ```
 The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa. 
 
+# Graph of Trust in Government Institutions Against Economic Optimism (2006-2009)
+
 ```{r}
-screenreg(fit1)
+graph_2006_2009
 ```
-```{r}
-screenreg(fit2)
-```
+
+
+# Regression Table for 2006-2009 Data
 
 ```{r}
 var_labels_fit2 <- c(
@@ -361,6 +365,8 @@ gof_map = c("nobs", "r.squared", "adj.r.squared"),
 ```
 
 
+# Graph of Spread of Trust in Government Institutions (2006-2009) 
+
 
 ```{r}
 
@@ -369,7 +375,7 @@ spread_trust_2006 <- first.regression|>
   labs(x = "Trust In Government Institutions  
        (1 being the most trust and 4 being the least trust)", 
        y = "Count",
-       title = "Spread of Trust in Government Institutions",
+       title = "Spread of Trust in Government Institutions (2006-2009)",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
 spread_trust_2006
 ```
@@ -377,6 +383,8 @@ spread_trust_2006
 
 
 ## 2010 - 2011 data 
+
+#The Coding 
 
 ```{r}
 data_2010_2011 <- da35040.0001 |> 
@@ -440,12 +448,15 @@ data_2010_2011 <- da35040.0001 |>
          Employment = Q1004,
          Religion = Q1012)
 
-data_2010_2011$mean_trust <- rowMeans(data_2010_2011[,c('Q2011B','Q2012B','Q2013B','Q2014B','Q2015B', 'Q2016B', 'Q2017B')],na.rm = T)
+data_2010_2011$mean_trust <- 
+  rowMeans(data_2010_2011[,c('Q2011B','Q2012B','Q2013B',
+                             'Q2014B','Q2015B', 'Q2016B', 'Q2017B')],
+           na.rm = T)
 
 
 
     
-data_2010_2011|>
+graph_2010_2011 <- data_2010_2011|>
   ggplot(aes(y = mean_trust, x = economic_opporunity_2011))+
   geom_point()+
   geom_smooth(method = "lm")+
@@ -453,18 +464,29 @@ data_2010_2011|>
        (1 being the most optimistic and 5 being the least optimistic)", 
        y = "Mean of Trust In Government Institutions  
        (1 being the most trust and 4 being the least trust)",
-       title = "Trust in Government Institutions Against Economic Optimism",
+       title = "Trust in Government Institutions Against Economic Optimism (2010-2011)",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")
   
-fit1_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex + Education + Religion + Employment, data = data_2010_2011)
+fit1_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex + 
+                  Education + Religion + Employment, 
+                data = data_2010_2011)
 summary(fit1)
 
-fit2_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex +Education+Religion+Employment+factor(Countries), data = data_2010_2011)
+fit2_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex +
+                  Education+Religion+Employment+factor(Countries), 
+                data = data_2010_2011)
 summary(fit2_2011)
 
 
 ```
 
+# Graph of Trust in Government Institutions Against Economic Optimism (2010-2011)
+
+```{r}
+graph_2010_2011
+```
+
+# Regression Table for 2010-2011 Data
 
 ```{r}
 var_labels_fit2_2011 <- c(
@@ -496,6 +518,7 @@ gof_map = c("nobs", "r.squared", "adj.r.squared"),
 
 ```
 
+# Graph of Spread of Trust in Government Institutions (2010-2011)
 
 ```{r}
     
@@ -504,7 +527,7 @@ spread_trust_2011 <- data_2010_2011|>
   labs(x = "Trust In Government Institutions  
        (1 being the most trust and 4 being the least trust)", 
        y = "Count",
-       title = "Spread of Trust in Government Institutions",
+       title = "Spread of Trust in Government Institutions (2010-2011)",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")
 spread_trust_2011
 ```

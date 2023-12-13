@@ -7,104 +7,11 @@ output:
     self_contained: false
 ---
 
-
-GOV 50 Final Report
-
-## Introduction
-
-The Arab world experienced a drastic shift in December 2010 with the start of the Arab Spring. That month, a Tunisian man named Mohamed Bouazizi set himself on fire in protest of the police not allowing him to sell his vegetables, which indicated a much wider issue of economic and political frustration. This act was the catalyst to the next wave of protests across the Arab world which varied from demanding complete regime change to increased levels of democracy to improved living conditions. While some were put down by brute force, others saw varying levels of success. [1]  Importantly, the Arab Spring challenged the western-imposed idea of the Arab as the willing subject of an authoritarian regime, and showed that discontent and distrust towards the government, but also civilian unity, did, in fact, exist. This led many to wonder what the civilian outlook was towards economic and governmental institutions that led to this.[2]  This begs the question: How does economic optimism impact trust in government institutions in the Arab world? 
-It can be hypothesized that as economic optimism increases, trust in government institutions will also increase. A decrease in trust of economic institutions will be seen around the time of the Arab Spring, leading to decreased trust in government. If citizens are content with their standards of living, and are optimistic that they will improve over the coming years, they will likely trust their governments. This question is interesting because there is a significant lack of survey data on the Arab world. Furthermore, the Arab Spring has fundamentally shaped the Arab world today, and understanding how its citizens viewed the economic situation and governmental institutions is crucial.
-
-## The Data
-
-The data is collected from Arab Barometer, which is the main research organization that conducts surveys in the Arab world to understand the perspectives of the average civilian on a variety of issues. The data explores their Public Opinion Surveys, one of which was conducted between the years of 2006-2009, and the next survey which was conducted between 2010-2011. The method of collecting survey participants is very specific and varies depending on the country, as described in the codebooks. In general, they describe themselves as using “stratification and clustering”. Depending on the country, the number of surveyed participants is split amongst the number of governorates or provinces, and the further into neighborhoods, and then participants are randomly selected. Arab Barometer also consults census data if it is beneficial to them to determine this split, and they weight based on factors such as gender or age, however that varies depending on the country. They also typically partner with a local research organization to conduct the research effectively. The surveys are then conducted in Arabic and are done face-to-face. This is a randomized experiment. 
-The independent variable of this research is economic optimism, which was calculated by asking participants how they thought the country’s economic situation would look like within the next 3-5 years on a scale of 1 to 5, with 1 being that it will be significantly improved and five being that it would be significantly worsened. As for the dependent variable, it was trust in government institutions, which was measured on a 1-4 scale with 1 being that they trusted the institutions to a great extent. For both the 2006-2009 and the 2010-2011 dataset, participants were asked about their trust in various governmental institutions such as the police and parliament. Some of the questions were modified for certain countries, and more institutions were added for the later data set. I then calculated the mean trust in government institutions by adding the mean trust in each of the individual institutions and dividing it by the total number of institutions. This gave me a mean trust in government institutions. 
-
-The graphs below show the spread, distribution and the range of responses to the questions surrounding the trust in government institutions. The graphs are titled “Spread of Trust in Government Institutions (2006-2009)” and “Spread of Trust in Government Institutions (2010-2011).” Looking at both graphs, the mean trust is generally evenly spread and does not appeared skewed. For the 2010-2011 graph, it appears that the proportion of participants that rated their trust level of 2, which was “I trust it to a medium extent” is greater than that of the 2006-2009 graph. Even though it would be assumed that there would be less trust in the later years as the Arab Spring approaches, there are some reasons why this could be the case. Namely, the 2006-2009 data surveyed ten countries, while the 2010-2011 data surveyed seven countries. Furthermore, the later data examines more variables to determine trust in government institutions and the questions are slightly different. For example, the older data asks about people’s level of trust in the prime minister, while the newer data does not explicitly ask that question. Hence why there could be some variability in the answers. Nevertheless, both graphs are relatively evenly distributed with most participants falling somewhere in the center. 
-
-```{r}
-spread_trust_2006
-```
-
-```{r}
-spread_trust_2011
-```
-
-
-
-## Results 
-
-# Graphs and Analysis
-The results supported my hypothesis as they show a positive correlation between economic optimism and trust in government institutions. In general, as one’s economic optimism increased their trust in government institutions increased. Similarly, as one’s economic optimism decreased, their trust in institutions decreased. This is evident by the slope of the graphs titled “Trust in Government Institutions Against Economic Optimism (2010-2011)” and “Trust in Government Institutions Against Economic Optimism (2006-2009)”. This is mapped out through a scatterplot with a line of best fit going through it. This logically makes sense, if people are optimistic about their economic outlook, it is likely because they trust that their governmental institutions will protect them and help achieve that outlook. Interestingly, the intercepts suggest that those with the greatest economic of 1 were more likely to trust the government institutions in the 2006-2009 data than the 2010-2011 data. The 2010-2011 data shows an intercept of 2.274 and the 2006-2009 data shows a lower intercept of 1.98. As unrest was occurring in the Arab world at the start of the Arab spring, it makes logical sense that overall people were less likely to trust governmental institutions in spite of economic optimism. 
-
-```{r}
-graph_2006_2009
-```
-
-
-```{r}
-graph_2010_2011
-```
-
-
-#Regression Tables
-To examine the validity of the results, a regression table was run. This regression table controlled for the following factors: age, sex, education level, religious identification, employment status, and country of origin. 
-Furthermore, as explored below, the null hypothesis of the main experiment was rejected, due to a p-value below 0.001. This makes this interpretation at risk of a type I error, which occurs when the null hypothesis is rejected when in fact, it is not. 
-
-
-# Regression Table of 2006-2009 Data
-
-For the 2006-2009 data, the coefficient was 0.178, this suggests that when economic outlook increases by a value of 1, thus is less optimistic, the trust in government institutions increases by 0.178, thus is less trustworthy. This shows the positive correlation. Notably, the p-value of this regression was less than 0.001, which suggests that this data is statistically significant and the null hypothesis of no affect between economic institutions and trust in government institutions can be rejected. When looking at the regression table, it was found that the variables that had the greatest impact on the relationship between economic institutions and trust was levels of education and the country the data was collected. Elementary, secondary, two-year college, and bachelor’s programs all had p values of less than 0.5, suggesting that they were confounding variables that impact people’s views on economic outlook and trust in institutions. Generally, the more education one receives the more likely they are to be affected by economic outlook. However, once they receive a level of education greater than a bachelor’s degree, they are less impacted. As for examining countries, Jordan, Lebanon, and Yemen all scored p-values of less than 0.001, suggesting that they are key variables that impact trust in governments. Jordanians were significantly more likely to trust government institutions with a coefficient score of -0.44, in comparison to Algeria. While Lebanon and Yemen were less likely to trust government institutions economic outlook with scores of 0.34 and 0.40 respectively. 
-```{r}
-modelsummary::modelsummary(fit2,
-statistic = c("s.e. = {std.error}",
-"p = {p.value}"),
-gof_map = c("nobs", "r.squared", "adj.r.squared"),
-                           coef_map = var_labels_fit2)
-```
-
-
-
-# Regression Table of 2010-2011 Data 
-
-When examining the 2010-2011 data set, it is necessary to keep in mind that the data was collected while the Arab Spring was heating up and getting started, a movement of Arabs fighting for change. The coefficient of economic optimism was greater than that of the 2006-2009 data at 0.213. A similar pattern is seen: as economic optimism decreases, trust in government institutions decreases. There is a high correlation and this number suggests that as economic pessimism increases by one point, there is a 0.213-point increase in distrust in government institutions. The p value is incredibly low at 0.001, suggesting that the null hypothesis of no effect can be rejected. When looking at the regression table, it controlled for the same factors as the 2006-2009 dataset. Similarly, the variables of level of education and country of origin had the biggest impact. Elementary education, a bachelor’s degree, and a mid-level diploma all had low p-values of 0.001, suggesting they were impactful. Their coefficients were -0.078, 0.125, and 0.145 respectively. This aligns with the earlier data set, the most significant difference is that compared to those with no education level, those with an elementary education were less likely to trust the government institutions as economic optimism increased. As for examining the countries, Egypt, Lebanon, Palestine, Sudan, Jordan and Iraq were more likely to trust economic institutions than the rest of the countries. They also had low p-values of less than 0.001, suggesting that the null hypothesis of no relationship can be rejected. 
-
-```{r}
-modelsummary::modelsummary(fit2_2011,
-statistic = c("s.e. = {std.error}",
-"p = {p.value}"),
-gof_map = c("nobs", "r.squared", "adj.r.squared"),
-                           coef_map = var_labels_fit2_2011)
-```
-
-
-## Conclusion 
-
-This data set supports my original hypothesis that as economic optimism increases, trust in government institutions increases. There is a strong correlation between the two variables, and this impact was greater in the 2010-2011 data set.
-However, this dataset and method presents a number of challenges when determining if economic optimism does in fact impact trust in government institutions. Namely, trust in government institutions could have impacted economic optimism, thus making it challenging to distinguish if the cause is economic optimism or trust in government systems. Furthermore, despite controlling for a number of variables, there are still other variables that could be affecting respondents’ answers, including personal experience, if they were in political active communities. 
-Another flaw of this analysis is that comparing the 2006-2009 data to the 2010-2011 data is challenging because they examined different countries, did not interview the same people, and questions were worded differently. Had the data surveyed the same group of people, an actual conclusion could be drawn regarding economic optimism and its relationship to trust in government over time. This would have been far more interesting and compelling data. Furthermore, only around 1,000 people were interviewed for each country. Considering the drastic differences in the countries’ general total populations, this is not proportionately representative. The method used to distribute and determine where to interview could have also skewed results as it was not a true random sampling, instead certain communities were selected and then random people were surveyed. 
-It is impossible to recreate this study and genuinely see how the Arab Spring impacted economic and political attitudes. However, if Arab Barometer were to survey the same group of people or communities for multiple years in a row, an interesting sample would be produced to see how changes impact people’s views. Furthermore, if they could survey the same people surveyed in 2010-2011 today to see how their views may have changed post-Arab Spring would be incredibly valuable. 
-
-## Footnotes
-
-[1] “What’s the Arab Spring and how did it Start?,” Al Jazeera, December 17, 2020, https://www.aljazeera.com/news/2020/12/17/what-is-the-arab-spring-and-how-did-it-start. 
- 
-[2] Kali Robinson and Will Merrow, “The Arab Spring at Ten Years: What’s the Legacy of the Uprisings?,” Council on Foreign Relations, last modified December 3, 2020, https://www.cfr.org/article/arab-spring-ten-years-whats-legacy-uprisings#chapter-title-0-3.
-
-
-## Works Cited
-
-Al Jazeera. “What’s the Arab Spring and how did it Start?.” December 17, 2020. https://www.aljazeera.com/news/2020/12/17/what-is-the-arab-spring-and-how-did-it-start.
-
-Robinson, Kali and Will Merrow. “The Arab Spring at Ten Years: What’s the Legacy of the Uprisings?” Council on Foreign Relations. Last modified December 3, 2020. https://www.cfr.org/article/arab-spring-ten-years-whats-legacy-uprisings#chapter-title-0-3.
-
-
-
-
-
-
 ## The Code
 
+This section shows all the coding that was done to achieve the below results. The analysis of this code is seen later in the project. 
+
+# The Code
 ```{r}
 load("data/ICPSR_35040/DS0001/35040-0001-Data.rda")
 
@@ -116,17 +23,10 @@ load("data/ICPSR_37029/DS0001/37029-0001-Data.rda")
 ```
 
 
-
 ```{r}
 library(tidyverse)
 ```
 
- 
- 
-
-# 2006-2009 Data
-
-# Coding
 
 ```{r}
 first.regression <- da26581.0001|>
@@ -192,27 +92,18 @@ graph_2006_2009 <- first.regression|>
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
 
 fit1 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education + Religion + Employment, data = first.regression)
-summary(fit1)
+
 
 fit2 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education+Religion + Employment + factor(Countries), data = first.regression)
-summary(fit2)
-unique(first.regression$Countries)
+
+
 
 #install.packages("texreg")
 library(texreg)
-screenreg(fit1)
-screenreg(fit2)
-```
-The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa. 
 
-# Graph of Trust in Government Institutions Against Economic Optimism (2006-2009)
-
-```{r}
-graph_2006_2009
 ```
 
 
-# Regression Table for 2006-2009 Data
 
 ```{r}
 var_labels_fit2 <- c(
@@ -242,15 +133,8 @@ var_labels_fit2 <- c(
 "factor(Countries)Palestine " = "Palestine"
 )
 
-modelsummary::modelsummary(fit2,
-statistic = c("s.e. = {std.error}",
-"p = {p.value}"),
-gof_map = c("nobs", "r.squared", "adj.r.squared"),
-                           coef_map = var_labels_fit2)
+
 ```
-
-
-# Graph of Spread of Trust in Government Institutions (2006-2009) 
 
 
 ```{r}
@@ -262,14 +146,8 @@ spread_trust_2006 <- first.regression|>
        y = "Count",
        title = "Spread of Trust in Government Institutions (2006-2009)",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
-spread_trust_2006
+
 ```
-
-
-
-# 2010 - 2011 data 
-
-#The Coding 
 
 ```{r}
 data_2010_2011 <- da35040.0001 |> 
@@ -355,23 +233,17 @@ graph_2010_2011 <- data_2010_2011|>
 fit1_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex + 
                   Education + Religion + Employment, 
                 data = data_2010_2011)
-summary(fit1)
+
 
 fit2_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex +
                   Education+Religion+Employment+factor(Countries), 
                 data = data_2010_2011)
-summary(fit2_2011)
+
 
 
 ```
 
-# Graph of Trust in Government Institutions Against Economic Optimism (2010-2011)
 
-```{r}
-graph_2010_2011
-```
-
-# Regression Table for 2010-2011 Data
 
 ```{r}
 var_labels_fit2_2011 <- c(
@@ -395,15 +267,9 @@ var_labels_fit2_2011 <- c(
   "factor(Countries)Sudan" = "Sudan"
 )
 
-modelsummary::modelsummary(fit2_2011,
-statistic = c("s.e. = {std.error}",
-"p = {p.value}"),
-gof_map = c("nobs", "r.squared", "adj.r.squared"),
-                           coef_map = var_labels_fit2_2011)
 
 ```
 
-# Graph of Spread of Trust in Government Institutions (2010-2011)
 
 ```{r}
     
@@ -414,6 +280,129 @@ spread_trust_2011 <- data_2010_2011|>
        y = "Count",
        title = "Spread of Trust in Government Institutions (2010-2011)",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")
+
+```
+
+
+
+## GOV 50 Final Report
+
+## Introduction
+
+The Arab world experienced a drastic shift in December 2010 with the start of the Arab Spring. That month, a Tunisian man named Mohamed Bouazizi set himself on fire in protest of the police not allowing him to sell his vegetables, which indicated a much wider issue of economic and political frustration. This act was the catalyst to the next wave of protests across the Arab world which varied from demanding complete regime change to increased levels of democracy to improved living conditions. While some were put down by brute force, others saw varying levels of success. [1]  Importantly, the Arab Spring challenged the western-imposed idea of the Arab as the willing subject of an authoritarian regime, and showed that discontent and distrust towards the government, but also civilian unity, did, in fact, exist. This led many to wonder what the civilian outlook was towards economic and governmental institutions that led to this.[2]  This begs the question: How does economic optimism impact trust in government institutions in the Arab world? 
+
+It can be hypothesized that as economic optimism increases, trust in government institutions will also increase. A decrease in trust of economic institutions will be seen around the time of the Arab Spring, leading to decreased trust in government. If citizens are content with their standards of living, and are optimistic that they will improve over the coming years, they will likely trust their governments. This question is interesting because there is a significant lack of survey data on the Arab world. Furthermore, the Arab Spring has fundamentally shaped the Arab world today, and understanding how its citizens viewed the economic situation and governmental institutions is crucial.
+
+## The Data
+
+The data is collected from Arab Barometer, which is the main research organization that conducts surveys in the Arab world to understand the perspectives of the average civilian on a variety of issues. The data explores their Public Opinion Surveys, one of which was conducted between the years of 2006-2009, and the next survey which was conducted between 2010-2011. The method of collecting survey participants is very specific and varies depending on the country, as described in the codebooks. In general, they describe themselves as using “stratification and clustering”. Depending on the country, the number of surveyed participants is split amongst the number of governorates or provinces, and the further into neighborhoods, and then participants are randomly selected. Arab Barometer also consults census data if it is beneficial to them to determine this split, and they weight based on factors such as gender or age, however that varies depending on the country. They also typically partner with a local research organization to conduct the research effectively. The surveys are then conducted in Arabic and are done face-to-face. This is a randomized experiment. 
+The independent variable of this research is economic optimism, which was calculated by asking participants how they thought the country’s economic situation would look like within the next 3-5 years on a scale of 1 to 5, with 1 being that it will be significantly improved and five being that it would be significantly worsened. As for the dependent variable, it was trust in government institutions, which was measured on a 1-4 scale with 1 being that they trusted the institutions to a great extent. For both the 2006-2009 and the 2010-2011 data set, participants were asked about their trust in various governmental institutions such as the police and parliament. Some of the questions were modified for certain countries, and more institutions were added for the later data set. I then calculated the mean trust in government institutions by adding the mean trust in each of the individual institutions and dividing it by the total number of institutions. This gave me a mean trust in government institutions to be used and further examined. 
+
+The graphs below show the spread, distribution and the range of responses to the questions surrounding the trust in government institutions. They show the spread of the dependent variable. The graphs are titled “Spread of Trust in Government Institutions (2006-2009)” and “Spread of Trust in Government Institutions (2010-2011).” Looking at both graphs, the  trust is generally evenly spread and does not appeared skewed. For the 2010-2011 graph, it appears that the proportion of participants that rated their trust level of 2, which was “I trust it to a medium extent” is greater than that of the 2006-2009 graph. Even though it would be assumed that there would be less trust in the later years as the Arab Spring approaches, there are some reasons why this could be the case. Namely, the 2006-2009 data surveyed ten countries, while the 2010-2011 data surveyed seven countries. Furthermore, the later data examines more variables to determine trust in government institutions and the questions are slightly different. For example, the older data asks about people’s level of trust in the prime minister, while the newer data does not explicitly ask that question. Hence why there could be some variability in the answers. Nevertheless, both graphs are relatively evenly distributed with most participants falling somewhere in the center. 
+
+
+# Graphs of The Spread of trust in Government Institutions. 
+
+```{r}
+spread_trust_2006
+```
+
+
+
+```{r}
 spread_trust_2011
 ```
+
+
+
+## Results 
+
+# Graphs and Analysis
+The results supported my hypothesis as they show a positive correlation between economic optimism and trust in government institutions. In general, as one’s economic optimism increased their trust in government institutions increased. Similarly, as one’s economic optimism decreased, their trust in institutions decreased. This is evident by the slope of the graphs titled “Trust in Government Institutions Against Economic Optimism (2010-2011)” and “Trust in Government Institutions Against Economic Optimism (2006-2009)”. This is mapped out through a scatter plot with a line of best fit going through it. This logically makes sense, if people trust their governments, it is likely because they are optimistic about their economic outlook. Economic factors are significant in determining trust. [3] Interestingly, the intercepts suggest that those with the greatest economic optimism of 1 were more likely to trust the government institutions in the 2006-2009 data than the 2010-2011 data. The 2010-2011 data shows an intercept of 2.274 and the 2006-2009 data shows a lower intercept of 1.98. As unrest was occurring in the Arab world at the start of the Arab spring, it makes logical sense that overall people were less likely to trust governmental institutions in spite of economic optimism. 
+
+
+# Trust in Government Institutions Against Economic Optimism (2006-2009) Graph
+
+```{r}
+graph_2006_2009
+```
+
+
+
+# Trust in Government Institutions Against Economic Optimism (2010-2011) Graph
+
+```{r}
+graph_2010_2011
+```
+
+
+# Regression Tables
+To examine the validity of the results, a regression table was run. This regression table controlled for the following factors: age, sex, education level, religious identification, employment status, and country of origin. 
+Furthermore, as explored below, the null hypothesis of the main experiment was rejected, due to a p-value below 0.001. This makes this interpretation at risk of a type I error, which occurs when the null hypothesis is rejected when in fact, it is not. 
+
+
+# Analysis of Regression Table of 2006-2009 Data
+
+For the 2006-2009 data, the coefficient was 0.178, this suggests that when economic outlook increases by a value of 1, thus is less optimistic, the trust in government institutions increases by 0.178, thus is less trustworthy. This shows the positive correlation. Notably, the p-value of this regression was less than 0.001, which suggests that this data is statistically significant and the null hypothesis of no affect between economic institutions and trust in government institutions can be rejected. When looking at the regression table, it was found that the variables that had the greatest impact on the relationship between economic institutions and trust was levels of education and the country the data was collected. Elementary, secondary, two-year college, and bachelor’s programs all had p values of less than 0.5, suggesting that they were confounding variables that impact people’s views on economic outlook and trust in institutions. Generally, the more education one receives the more likely they are to be affected by economic outlook. However, once they receive a level of education greater than a bachelor’s degree, they are less impacted. As for examining countries, the countries of Jordan, Lebanon, and Yemen all scored p-values of less than 0.001, suggesting that they are key variables that impact trust in governments. Jordanians were significantly more likely to trust government institutions with a coefficient score of -0.44, in comparison to Algeria. While Lebanon and Yemen were less likely to trust government institutions economic outlook with scores of 0.34 and 0.40 respectively. 
+
+# Regression Table of 2006-2009 Data
+
+
+```{r}
+modelsummary::modelsummary(fit2,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"),
+                           coef_map = var_labels_fit2)
+```
+
+
+
+# Analysis of Regression Table of 2010-2011 Data 
+
+
+When examining the 2010-2011 data set, it is necessary to keep in mind that the data was collected while the Arab Spring was heating up and getting started, a movement of Arabs fighting for change. The coefficient of economic optimism was greater than that of the 2006-2009 data at 0.213. A similar pattern is seen: as economic optimism decreases, trust in government institutions decreases. There is a high correlation and this number suggests that as economic pessimism increases by one point, there is a 0.213-point increase in distrust in government institutions. The p value is incredibly low at 0.001, suggesting that the null hypothesis of no effect can be rejected. When looking at the regression table, it controlled for the same factors as the 2006-2009 data set. Similarly, the variables of level of education and country of origin had the biggest impact. Elementary education, a bachelor’s degree, and a mid-level diploma all had low p-values of 0.001, suggesting they were impactful. Their coefficients were -0.078, 0.125, and 0.145 respectively. This aligns with the earlier data set, the most significant difference is that compared to those with no education level, those with an elementary education were less likely to trust the government institutions as economic optimism increased. As for examining the countries, Egypt, Lebanon, Palestine, Sudan, Jordan and Iraq were more likely to trust economic institutions than the rest of the countries, which makes sense considering other countries such as Tunisia and Algeria was where the Arab Spring was heating up at this time. [4] They also had low p-values of less than 0.001, suggesting that the null hypothesis of no relationship can be rejected. 
+
+# Regression Table of 2010-2011 Data 
+
+
+```{r}
+modelsummary::modelsummary(fit2_2011,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"),
+                           coef_map = var_labels_fit2_2011)
+```
+
+
+## Conclusion 
+
+This data set supports my original hypothesis that as economic optimism increases, trust in government institutions increases. There is a strong correlation between the two variables, and this impact was greater in the 2010-2011 data set.
+However, this dataset and method presents a number of challenges when determining if economic optimism does in fact impact trust in government institutions. Namely, trust in government institutions could have impacted economic optimism, thus making it challenging to distinguish if the cause is economic optimism or trust in government systems. Either factor could have been influencing the other. Furthermore, despite controlling for a number of variables, there are still other variables that could be affecting respondents’ answers, including personal experience and if they were in political active communities. 
+Another flaw of this analysis is that comparing the 2006-2009 data to the 2010-2011 data is challenging because they examined different countries, did not interview the same people, and questions were worded differently. Had the data surveyed the same group of people, an actual conclusion could be drawn regarding economic optimism and its relationship to trust in government over time. The lack of before-and-after design makes it challenging to reach these conclusions. This would have been far more interesting and compelling data had the design been changed. However, it is unlikely that when they set out to collect this data that Arab Barometer was aware of the Arab Spring that was about to break out, so their survey data was not meant to be used to study the Arab Spring's impacts. Furthermore, only around 1,000 people were interviewed for each country. Considering the drastic differences in the countries’ general total populations, this is not proportionately representative. The method used to distribute and determine where to interview could have also skewed results as it was not a true random sampling, instead certain communities were selected and then random people were surveyed. 
+It is impossible to recreate this study and genuinely see how the Arab Spring impacted economic and political attitudes. However, if Arab Barometer were to survey the same group of people or communities for multiple years in a row, an interesting sample would be produced to see how changes impact people’s views. Furthermore, if they could survey the same people surveyed in 2010-2011 today to see how their views may have changed post-Arab Spring would be incredibly valuable. 
+Nevertheless, this data is valuable in unlocking preliminary information about the relationship between economic outlook and how it influences trust in government institutions. Furthermore, Arab Barometer's act of surveying the Arab world is key in helping political scientists better understand the overlooked views of Arab civilians. 
+
+## Footnotes
+
+[1] “What’s the Arab Spring and how did it Start?,” Al Jazeera, December 17, 2020, https://www.aljazeera.com/news/2020/12/17/what-is-the-arab-spring-and-how-did-it-start. 
+ 
+[2] Kali Robinson and Will Merrow, “The Arab Spring at Ten Years: What’s the Legacy of the Uprisings?,” Council on Foreign Relations, last modified December 3, 2020, https://www.cfr.org/article/arab-spring-ten-years-whats-legacy-uprisings#chapter-title-0-3.
+
+[3] “Trust in public institutions: Trends and implications for economic security,” Department of Social and Economic Affairs, United Nations, last modified July 20, 2021, https://www.un.org/development/desa/dspd/2021/07/trust-public-institutions/#:~:text=However%2C%20in%20countries%20where%20declines,poor%20or%20corrupt%20Government%20performance.
+
+[4] “What’s the Arab Spring and how did it Start?,” Al Jazeera, December 17, 2020, https://www.aljazeera.com/news/2020/12/17/what-is-the-arab-spring-and-how-did-it-start. 
+
+
+## Works Cited
+
+Al Jazeera. “What’s the Arab Spring and how did it Start?.” December 17, 2020. https://www.aljazeera.com/news/2020/12/17/what-is-the-arab-spring-and-how-did-it-start.
+
+Robinson, Kali and Will Merrow. “The Arab Spring at Ten Years: What’s the Legacy of the Uprisings?” Council on Foreign Relations. Last modified December 3, 2020. https://www.cfr.org/article/arab-spring-ten-years-whats-legacy-uprisings#chapter-title-0-3.
+
+United Nations. “Trust in public institutions: Trends and implications for economic security.” Department of Social and Economic Affairs. Last modified July 20, 2021. https://www.un.org/development/desa/dspd/2021/07/trust-public-institutions/#:~:text=However%2C%20in%20countries%20where%20declines,poor%20or%20corrupt%20Government%20performance.
+
+
+
+
 

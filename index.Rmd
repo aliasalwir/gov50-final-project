@@ -240,7 +240,7 @@ summary(fit1)
  
  
 
-## ACTUAL Milestone 4
+## 2006-2009 Data
 
 ```{r}
 first.regression <- da26581.0001|>
@@ -308,7 +308,7 @@ first.regression|>
 fit1 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education + Religion + Employment, data = first.regression)
 summary(fit1)
 
-fit2 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education+factor(Countries), data = first.regression)
+fit2 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education+Religion + Employment + factor(Countries), data = first.regression)
 summary(fit2)
 unique(first.regression$Countries)
 
@@ -325,10 +325,53 @@ screenreg(fit1)
 ```{r}
 screenreg(fit2)
 ```
+
+```{r}
+var_labels_fit2 <- c(
+"(Intercept)" = "Intercept",
+"Age(2) 25-34" = "Age 25-34",
+"Age(3) 35-44" = "Age 35-44", 
+"Age(4) 45-54" = "Age 45-54", 
+"Age(5) 55-64 " = "Age 55-64", 
+"Age(6) 65-74" = "Age 65-74",
+"Age(7) 75 and older" = "75 and older",
+"Education(2) elementary" = "Elementary Education",
+"Education(3) primary" = "Primary Education", 
+"Education(4) secondary" = "Secondary Education", 
+"Education(5) college diploma- two years" = "Two Year College Diploma",
+"Education(6) ba" = "Bachelor's Degree",
+"Education(7) ma or higher" = "MA or Higher",
+"Religion(2) christian " = "Christian Identification",
+"Religion(3) sunni muslim (lebanon & bahrain)" = "Sunni Mulsim (Lebanon and Bahrain)",
+"Religion(4) shiite muslim (lebanon & bahrain)" = "Shiite Muslim (Lebanon and Bahrain",
+"Religion(5) druze (lebanon)" = "Druze (Lebanon)",
+"Employment(2) no" = "Unemployed",
+"factor(Countries)Lebanon " = "Lebanon",
+"factor(Countries)Yemen " = "Yemen",
+"factor(Countries)Jordan " = "Jordan",
+"factor(Countries)Lebanon" = "Lebanon",
+"factor(Countries)Palestine " = "Palestine"
+)
+
+modelsummary::modelsummary(fit2,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"),
+                           coef_map = var_labels_fit2)
+```
+
+
+
 ```{r}
 
-first.regression|>
-  ggplot(aes(x = mean_trust)) + geom_bar() 
+spread_trust_2006 <- first.regression|>
+  ggplot(aes(x = mean_trust)) + geom_bar() +
+  labs(x = "Trust In Government Institutions  
+       (1 being the most trust and 4 being the least trust)", 
+       y = "Count",
+       title = "Spread of Trust in Government Institutions",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
+spread_trust_2006
 ```
 
 
@@ -355,37 +398,37 @@ data_2010_2011 <- da35040.0001 |>
       COUNTRY == "(19) 19. Sudan" ~ "Sudan",
       COUNTRY == "(21) 21. Tunisia" ~ "Tunisia", 
       COUNTRY == "(22) 22. Yemen" ~ "Yemen"),
-    Q2011B = case_when(Q2011 == "(1) a great deal of trust" ~ 1,
+    Q2011B = case_when(Q2011 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2011 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2011 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2011 == "(4) 4. i absolutely do not trust it" ~ 4,
                        TRUE ~ NA_real_),
-    Q2012B = case_when(Q2012 == "(1) a great deal of trust" ~ 1,
+    Q2012B = case_when(Q2012 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2012 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2012 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2012 == "(4) 4. i absolutely do not trust it" ~ 4,
                        TRUE ~ NA_real_),
-    Q2013B = case_when(Q2013 == "(1) a great deal of trust" ~ 1,
+    Q2013B = case_when(Q2013 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2013 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2013 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2013 == "(4) 4. i absolutely do not trust it" ~ 4,
                        TRUE ~ NA_real_),
-    Q2014B = case_when(Q2014 == "(1) a great deal of trust" ~ 1,
+    Q2014B = case_when(Q2014 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2014 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2014 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2014 == "(4) 4. i absolutely do not trust it" ~ 4,
                        TRUE ~ NA_real_),
-    Q2015B = case_when(Q2015 == "(1) a great deal of trust" ~ 1,
+    Q2015B = case_when(Q2015 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2015 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2015 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2015 == "(4) 4. i absolutely do not trust it" ~ 4,
                        TRUE ~ NA_real_),
-    Q2016B = case_when(Q2016 == "(1) a great deal of trust" ~ 1,
+    Q2016B = case_when(Q2016 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2016 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2016 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2016 == "(4) 4. i absolutely do not trust it" ~ 4,
                        TRUE ~ NA_real_),
-    Q2017B = case_when(Q2017 == "(1) a great deal of trust" ~ 1,
+    Q2017B = case_when(Q2017 == "(1) 1. i trust it to a great extent" ~ 1,
                        Q2017 == "(2) 2. i trust it to a medium extent" ~ 2,
                        Q2017 == "(3) 3. i trust it to a limited extent" ~ 3,
                        Q2017 == "(4) 4. i absolutely do not trust it" ~ 4,
@@ -397,12 +440,13 @@ data_2010_2011 <- da35040.0001 |>
          Employment = Q1004,
          Religion = Q1012)
 
-data_2010_2011|>
-  rowMeans(first.regression[,c('Q2011B','Q2012B','Q2013B','Q2014B','Q2015B', 'Q2016B', 'Q2017B')],na.rm = T)
+data_2010_2011$mean_trust <- rowMeans(data_2010_2011[,c('Q2011B','Q2012B','Q2013B','Q2014B','Q2015B', 'Q2016B', 'Q2017B')],na.rm = T)
+
+
 
     
 data_2010_2011|>
-  ggplot(aes(y = mean_trust_2011, x = economic_opporunity_2011))+
+  ggplot(aes(y = mean_trust, x = economic_opporunity_2011))+
   geom_point()+
   geom_smooth(method = "lm")+
   labs(x = "Mean of Economic Optimism 
@@ -412,11 +456,56 @@ data_2010_2011|>
        title = "Trust in Government Institutions Against Economic Optimism",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")
   
-fit1_2011 <- lm(mean_trust_2011 ~ economic_opporunity_2011 + Age + Sex + Education + Religion + Employment, data = data_2010_2011)
+fit1_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex + Education + Religion + Employment, data = data_2010_2011)
 summary(fit1)
 
-fit2 <- lm(mean_trust ~ economic_opporunity + Age + Sex +Education+factor(Countries), data = data_2010_2011)
-summary(fit2)
+fit2_2011 <- lm(mean_trust ~ economic_opporunity_2011 + Age + Sex +Education+Religion+Employment+factor(Countries), data = data_2010_2011)
+summary(fit2_2011)
 
+
+```
+
+
+```{r}
+var_labels_fit2_2011 <- c(
+  "(Intercept)" = "Intercept",
+  "economic_opporunity_2011" = "Economic Optimism",
+  "Age" = "Age",
+  "Education(2) 2. elementary" = "Elementary Education", 
+  "Education(3) 3. preparatory/basic" = "Preperatory Education", 
+  "Education(4) 4. secondary" = "Secondary Education", 
+  "Education(5) 5. mid-level diploma/professional or technical" = "Mid-Level Diploma",
+  "Education(6) 6. ba" = "Bachelor's Degree", 
+  "Education(7) 7. ma and above" = "MA and Above", 
+  "Religion(2) 2. christian " = "Christian Identification",
+  "Religion(3) 3. unspecific answer" = "Unspecified Religion",
+  "Employment(2) 2. no" = "Unemployed",
+  "factor(Countries)Egypt" = "Egypt",
+  "factor(Countries)Iraq" = "Iraq",
+  "factor(Countries)Jordan" = "Jordan",
+  "factor(Countries)Lebanon" = "Lebanon",
+  "factor(Countries)Palestine" = "Palestine",
+  "factor(Countries)Sudan" = "Sudan"
+)
+
+modelsummary::modelsummary(fit2_2011,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"),
+                           coef_map = var_labels_fit2_2011)
+
+```
+
+
+```{r}
+    
+spread_trust_2011 <- data_2010_2011|>
+  ggplot(aes(x = mean_trust)) + geom_bar()+
+  labs(x = "Trust In Government Institutions  
+       (1 being the most trust and 4 being the least trust)", 
+       y = "Count",
+       title = "Spread of Trust in Government Institutions",
+       subtitle = "Source: Arab Barometer: Public Opinion Survey 2010-2011")
+spread_trust_2011
 ```
 

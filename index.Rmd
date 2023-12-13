@@ -298,9 +298,9 @@ first.regression|>
   ggplot(aes(y = mean_trust, x = economic_opporunity))+
   geom_point()+
   geom_smooth(method = "lm")+
-  labs(x = "Mean of Economic Optimism 
+  labs(x = "Economic Optimism 
        (1 being the most optimistic and 5 being the least optimistic)", 
-       y = "Mean of Trust In Government Institutions  
+       y = "Trust In Government Institutions  
        (1 being the most trust and 4 being the least trust)",
        title = "Trust in Government Institutions Against Economic Optimism",
        subtitle = "Source: Arab Barometer: Public Opinion Survey 2006-2009")
@@ -318,6 +318,20 @@ screenreg(fit1)
 screenreg(fit2)
 ```
 The positive value of 0.19 as seen in the regression table suggests a positive relationship between trust in government institutions and economic optimism over the next 3-5 years in Arab countries according to survey data from 2006-2009. However, this does not take into account counterfactuals, where it could be trust in institutions that influences faith in economic opportunities or vice versa. 
+
+```{r}
+screenreg(fit1)
+```
+```{r}
+screenreg(fit2)
+```
+```{r}
+
+first.regression|>
+  ggplot(aes(x = mean_trust)) + geom_bar() 
+```
+
+
 
 ## 2010 - 2011 data 
 

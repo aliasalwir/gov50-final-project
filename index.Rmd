@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
 author: "Alia Al-Wir"
-description: "My final project"
+description: "How does economic optimism impact trust in government institutions in the Arab world? "
 output:
   distill::distill_article:
     self_contained: false

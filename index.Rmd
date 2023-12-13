@@ -333,6 +333,7 @@ graph_2006_2009
 ```{r}
 var_labels_fit2 <- c(
 "(Intercept)" = "Intercept",
+"economic_opporunity" = "Economic Opportunity",
 "Age(2) 25-34" = "Age 25-34",
 "Age(3) 35-44" = "Age 35-44", 
 "Age(4) 45-54" = "Age 45-54", 
